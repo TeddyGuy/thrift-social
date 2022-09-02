@@ -1,0 +1,7 @@
+{
+  "name": "ThriftSocial",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
