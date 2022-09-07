@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyDN32hazM8Vq3PJGxOnWuoJxaxE8gYbA8Q',
+    authDomain: 'hrift-social.firebaseapp.com',
+    projectId: 'thrift-social',
+    storageBucket: 'thrift-social.appspot.com',
+    messagingSenderId: '822190228285',
+    appId: '1:822190228285:web:a30d49ffb740df7f0c3b54',
+    measurementId: 'G-N05SX4PQ4N'
+  }
 };
 
 /*
