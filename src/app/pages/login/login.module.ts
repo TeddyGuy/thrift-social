@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegisterPageRoutingModule } from './register-routing.module';
+import { LoginPageRoutingModule } from './login-routing.module';
 
-import { RegisterPage } from './register.page';
+import { LoginPage } from './login.page';
 import { TextInputComponent } from 'src/app/components/form/input/text-input/text-input.component';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { TextInputComponent } from 'src/app/components/form/input/text-input/tex
     CommonModule,
     FormsModule,
     IonicModule,
-    RegisterPageRoutingModule,
+    LoginPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [RegisterPage, TextInputComponent]
+  declarations: [LoginPage, TextInputComponent]
 })
-export class RegisterPageModule {}
+export class LoginPageModule {}
