@@ -1,0 +1,10 @@
+
+
+<ion-content>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div *ngFor="let controls of formData">
+        <app-text-input [form]="form" [formInputMetaData]="controls" ></app-text-input>
+    </div>
+    <ion-button size="large" type="submit" color="success" expand="block">S'inscrire</ion-button>
+  </form>
+</ion-content>

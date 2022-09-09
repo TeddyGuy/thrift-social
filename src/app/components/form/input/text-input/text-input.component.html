@@ -1,0 +1,14 @@
+<div [formGroup]="form">
+  <ion-item lines="full">
+    <ion-label position="floating">{{ formInputMetaData.label }}</ion-label>
+    <div [ngSwitch]="formInputMetaData.type">
+      <div *ngSwitchCase="'password'">
+        <ion-input type="password" [id]="formInputMetaData.name" [formControlName]="formInputMetaData.name" [required]=" formInputMetaData.required"></ion-input>
+      </div>
+      <div *ngSwitchDefault>
+        <ion-input type="text" [id]="formInputMetaData.name" [formControlName]="formInputMetaData.name" [required]=" formInputMetaData.required"></ion-input>
+      </div>
+    </div>
+  </ion-item>
+</div>
+
