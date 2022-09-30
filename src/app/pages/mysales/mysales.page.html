@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mes ventes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let sale of sales | async" routerLink="/mysales/{{sale.uid}}">
+    <ion-label>
+      <h2>{{ sale.name }}</h2>
+      <p>Prix: {{ sale.price }}</p>
+    </ion-label>
+  </ion-item>
+</ion-content>

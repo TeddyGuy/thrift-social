@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,7 +25,9 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [AppComponent, TextInputComponent, RegisterPage, LoginPage],
   imports: [
+    IonicStorageModule.forRoot(),
     BrowserModule,
+    MatTabsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,

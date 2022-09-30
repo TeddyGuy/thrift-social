@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recherche</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-item lines="full">
+    <ion-input type="text" [value]="query" (input)="onChange($event)" ></ion-input>
+    
+  </ion-item>
+  
+  <mat-tab-group class="text-white" mat-align-tabs="center">
+    
+    <mat-tab labelClass="text-white">
+      <ng-template mat-tab-label>
+        <h4 class="text-white">Ventes</h4>
+      </ng-template>
+      <div *ngFor="let sale of salesResults | async" >
+        <ion-item *ngIf="query.trim() !== '' && sale.name.includes(query) && sale.seller !== user.name">
+          <ion-label>
+            <h1>{{ sale.name }}</h1>
+            <h2>Vendu par: {{ sale.seller }}</h2>
+            <p>Prix: {{ sale.price }}</p>
+          </ion-label>
+        </ion-item>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h4 class="text-white">Vendeurs</h4>
+      </ng-template>
+      <div *ngFor="let seller of sellersResults | async" >
+        <ion-item *ngIf="query.trim() !== '' && seller.name.includes(query) && seller.name !== user.name">
+          <ion-label>
+            <h1>{{ seller.name }}</h1>
+            <h2>Email: {{ seller.email }}</h2>
+          </ion-label>
+        </ion-item>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  
+  
+</ion-content>

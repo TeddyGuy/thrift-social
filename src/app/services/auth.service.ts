@@ -10,8 +10,10 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
+import { Storage } from '@ionic/storage-angular';
 
 import { AlertController } from '@ionic/angular';
+import { StringFormat } from '@angular/fire/compat/storage/interfaces';
 
 const authTokens: AuthToken[] = [];
 @Injectable({
@@ -20,8 +22,10 @@ const authTokens: AuthToken[] = [];
 
 export class AuthService {
   userData: any;
+  private _storage: Storage | null = null;
   constructor(
     private router: Router,
+    private storage: Storage,
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     private alertController: AlertController
@@ -29,20 +33,31 @@ export class AuthService {
     this.afAuth.authState.subscribe((user) => {
       if(user){
         this.userData = user;
+        this.router.navigate(['/dashboard']);
       } else {
-        this.userData = 'no user';
+        this.userData = null;
+        this.router.navigate(['/home']);
       }
     });
   }
 
   getUserData(){
-    return this.userData;
+    if(!this.userData) {
+       return this.router.navigate(['/home']);
+      }
+    console.log(this.userData.uid);
+    return this.afs.firestore.collection('users').doc(this.userData.uid).get();
   }
 
   registerUser(data: UserRegistrationInfo){
     this.afAuth.createUserWithEmailAndPassword(data.email, data.password).then(
       (response) => {
-        console.log(response);
+        const userData: User = {
+          uid: response.user.uid,
+          email: data.email,
+          name: data.name,
+        };
+        this.setUserData(userData);
       }
     ).catch(
       (error) => {
@@ -64,28 +79,21 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(data.email, data.password)
       .then((result) => {
-        console.log(result);
-        this.setUserData(result.user);
         this.afAuth.authState.subscribe((user) => {
           if (user) {
+            console.log(user);
             this.router.navigate(['/dashboard']);
           }
         });
       })
       .catch((error) => {
-        window.alert(error.message);
+        this.presentErrorAlert(error.message);
       });
   }
 
   logout(){
-    //TODO handle this on remote backend
-    // const index = authTokens.findIndex((authToken) => (authToken.token === localAuthToken));
-
-    // if(index !== -1){
-    //   authTokens.splice(index,1);
-    // }
-
-    // this.router.navigate(['/home']);
+   this.afAuth.signOut();
+   this.router.navigate(['/home']);
   }
 
   setUserData(user: any) {

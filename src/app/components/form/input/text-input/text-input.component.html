@@ -5,6 +5,9 @@
       <div *ngSwitchCase="'password'">
         <ion-input type="password" [id]="formInputMetaData.name" [formControlName]="formInputMetaData.name" [required]=" formInputMetaData.required"></ion-input>
       </div>
+      <div *ngSwitchCase="'number'">
+        <ion-input type="number" [id]="formInputMetaData.name" [formControlName]="formInputMetaData.name" [required]=" formInputMetaData.required"></ion-input>
+      </div>
       <div *ngSwitchDefault>
         <ion-input type="text" [id]="formInputMetaData.name" [formControlName]="formInputMetaData.name" [required]=" formInputMetaData.required"></ion-input>
       </div>

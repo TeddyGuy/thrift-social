@@ -22,6 +22,18 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'sell',
+    loadChildren: () => import('./pages/sell/sell.module').then( m => m.SellPageModule)
+  },
+  {
+    path: 'mysales',
+    loadChildren: () => import('./pages/mysales/mysales.module').then( m => m.MysalesPageModule)
+  },
+  {
+    path: 'search-sale',
+    loadChildren: () => import('./pages/search-sale/search-sale.module').then( m => m.SearchSalePageModule)
   }
 ];
 

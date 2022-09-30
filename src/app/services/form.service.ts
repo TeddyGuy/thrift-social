@@ -15,7 +15,9 @@ export class FormService {
 
     controls.forEach(control => {
       const formControl = new FormControl();
-      formControl.addValidators(stringNotEmptyValidator);
+      if(!(control.type === 'number')){
+        formControl.addValidators(stringNotEmptyValidator);
+      }
       if(control.required){
         formControl.addValidators(Validators.required);
       }
